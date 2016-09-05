@@ -1,51 +1,27 @@
 # Docker image for IntelliJ IDEA Community
 
-# Add note that JDK is downloaded from Oracle by automatically accepting licence.
-
 The image contains the following software:
 
 - [IntelliJ IDEA Community 2016.2](https://www.jetbrains.com/idea/)
 - [Markdown plugin (release, 2016.1.20160405)](https://plugins.jetbrains.com/plugin/7793)
 
+This is a fork of the work of dlsniper/docker-intellij so that I could learn a bit of Docker and remove the code for Go
+that I didn't need. It also has some extra information to get the display working on OS X.
+
 ## Setup
 
-* Install XQuartz
-* Install Docker
-* Fix bug in XQuartz https://bugs.freedesktop.org/show_bug.cgi?id=95379 where it does not listen on port number.
+* Install Docker (Required to run the Docker Image)
+* Install XQuartz (X11 Server for OS X)
+* Fix [bug in XQuartz](https://bugs.freedesktop.org/show_bug.cgi?id=95379) where it does not listen on tcp port number.
 * Restart Mac, this is important, XQuartz will not be correctly set up without it!
 * Start the Docker container
-
-
-## Running
-
-**NOTE**
-As of Docker 1.10(?) you need to specify full paths for mounts.
-
-By running the following command you'll be able to start the container
-
-
-
-```bash
-docker run -tdi \
-           --net="host" \
-           -e DISPLAY=192.169.0.170:0 \
-           -v ${HOME}/.IdeaIC:/home/developer/.IdeaIC \
-           -v ${HOME}/coding/workspace:/home/developer/workspace
-           mksbikerider/docker-intellij
-```
-
-The command will do the following:
-
-- save the IDE preferences into `<your-HOME-dir>/.IdeaIC`
-
-
-## Updating the container
-
-To update the container, simply run:
-
-```shell
-docker pull mksbikerider/docker-intellij
-```
+* Clone this repository
+* Run `./build.sh` to create a local image for Docker
+* Update start-intellij.sh with your
+** X11 display details
+** Volume to store IntelliJ config
+** Volume to use as a workspace
+* Run `./start-intellij.sh`
 
 Each of the plugins can be updated individually at any time, and other plugins
 can be installed as well.

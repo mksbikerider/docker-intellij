@@ -4,7 +4,6 @@ MAINTAINER Michael Sutherland "mike@msutherland.name"
 # Based on work by MAINTAINER Florin Patan "florinpatan@gmail.com"
 
 ARG intellij_download_url=https://download.jetbrains.com/idea/ideaIC-2016.2.tar.gz
-ARG markdown_download_url=https://plugins.jetbrains.com/files/7793/25156/markdown-2016.1.20160405.zip
 
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
@@ -50,11 +49,6 @@ RUN echo 'Installing IntelliJ IDEA' && \
     mkdir -p /opt/intellij && \
     tar -xf /tmp/intellij.tar.gz --strip-components=1 -C /opt/intellij && \
     rm /tmp/intellij.tar.gz
-
-RUN echo 'Installing Markdown plugin' && \
-    wget $markdown_download_url} -O markdown.zip -q && \
-    unzip -q markdown.zip && \
-    rm markdown.zip
 
 RUN sudo chown developer:developer -R /home/developer
 
