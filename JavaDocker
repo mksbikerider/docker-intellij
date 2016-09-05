@@ -1,7 +1,6 @@
 FROM mksbikerider/docker-intellij
 
 MAINTAINER Michael Sutherland "mike@msutherland.name"
-# Based on work by MAINTAINER Florin Patan "florinpatan@gmail.com"
 
 ARG download_url=http://download.oracle.com/otn-pub/java/jdk/8u5-b13/jdk-8u5-linux-x64.tar.gz
 ARG download_folder=/tmp
