@@ -3,6 +3,9 @@ FROM ubuntu:16.04
 MAINTAINER Michael Sutherland "mike@msutherland.name"
 # Based on work by MAINTAINER Florin Patan "florinpatan@gmail.com"
 
+ARG intellij_download_url=https://download.jetbrains.com/idea/ideaIC-2016.2.tar.gz
+ARG markdown_download_url=https://plugins.jetbrains.com/files/7793/25156/markdown-2016.1.20160405.zip
+
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
@@ -34,9 +37,6 @@ RUN mkdir -p /home/developer/.IdeaIC/config/options && \
 
 RUN mkdir -p /home/developer/workspace
 
-ADD ./jdk.table.xml /home/developer/.IdeaIC/config/options/jdk.table.xml
-ADD ./jdk.table.xml /home/developer/.jdk.table.xml
-
 ADD ./idea.properties /home/developer
 
 ADD ./run /usr/local/bin/intellij
@@ -45,14 +45,14 @@ RUN chmod +rx /usr/local/bin/intellij && \
     chown developer:developer -R /home/developer/.IdeaIC
 
 RUN echo 'Downloading IntelliJ IDEA' && \
-    wget https://download.jetbrains.com/idea/ideaIC-2016.2.tar.gz -O /tmp/intellij.tar.gz -q
+    wget ${intellij_download_url} -O /tmp/intellij.tar.gz -q
 RUN echo 'Installing IntelliJ IDEA' && \
     mkdir -p /opt/intellij && \
     tar -xf /tmp/intellij.tar.gz --strip-components=1 -C /opt/intellij && \
     rm /tmp/intellij.tar.gz
 
 RUN echo 'Installing Markdown plugin' && \
-    wget https://plugins.jetbrains.com/files/7793/25156/markdown-2016.1.20160405.zip -O markdown.zip -q && \
+    wget $markdown_download_url} -O markdown.zip -q && \
     unzip -q markdown.zip && \
     rm markdown.zip
 
