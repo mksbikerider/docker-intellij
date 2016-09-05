@@ -18,9 +18,9 @@ that I didn't need. It also has some extra information to get the display workin
 * Clone this repository
 * Run `./build.sh` to create a local image for Docker
 * Update start-intellij.sh with your
-** X11 display details
-** Volume to store IntelliJ config
-** Volume to use as a workspace
+   - X11 display details
+   - Volume to store IntelliJ config
+   - Volume to use as a workspace
 * Run `./start-intellij.sh`
 
 Each of the plugins can be updated individually at any time, and other plugins
