@@ -3,7 +3,6 @@
 The image contains the following software:
 
 - [IntelliJ IDEA Community 2016.2](https://www.jetbrains.com/idea/)
-- [Markdown plugin (release, 2016.1.20160405)](https://plugins.jetbrains.com/plugin/7793)
 
 This is a fork of the work of dlsniper/docker-intellij so that I could learn a bit of Docker and remove the code for Go
 that I didn't need. It also has some extra information to get the display working on OS X.
